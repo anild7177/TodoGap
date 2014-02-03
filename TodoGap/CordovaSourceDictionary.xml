@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This file is auto-generated, do not edit! -jm -->
+<CordovaSourceDictionary>
+    <FilePath Value="www\Content\bootstrap-theme.css"/>
+    <FilePath Value="www\Content\bootstrap-theme.min.css"/>
+    <FilePath Value="www\Content\bootstrap.css"/>
+    <FilePath Value="www\Content\bootstrap.min.css"/>
+    <FilePath Value="www\fonts\glyphicons-halflings-regular.svg"/>
+    <FilePath Value="www\scripts\app.js"/>
+    <FilePath Value="www\scripts\controllers\TodoController.js"/>
+    <FilePath Value="www\scripts\directives\todoBlur.js"/>
+    <FilePath Value="www\scripts\directives\todoEscape.js"/>
+    <FilePath Value="www\scripts\directives\todoFocus.js"/>
+    <FilePath Value="www\scripts\lib\angularfire.js"/>
+    <FilePath Value="www\scripts\lib\bootstrap.js"/>
+    <FilePath Value="www\scripts\lib\firebase.js"/>
+    <FilePath Value="www\scripts\lib\cordova.js"/>
+    <FilePath Value="www\index.html"/>
+    <FilePath Value="www\scripts\lib\angular.js"/>
+    <FilePath Value="www\scripts\lib\jquery-1.9.1.js"/>
+</CordovaSourceDictionary>

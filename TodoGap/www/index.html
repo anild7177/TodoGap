@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html ng-app="TodoApp">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link href="Content/bootstrap.css" rel="stylesheet" />
+        <title>Todo</title>
+    </head>
+    <body>
+      <div class="container" ng-controller="TodoController">
+        
+        <div>
+          <div class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+              <a href="#" class="navbar-brand ">Todo Application</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <form class="form-horizontal" role="form" ng-submit="addTodo()">
+            <div class="form-group">
+              <label for="NewTodo" class="col-sm-2 control-label sr-only">New Todo</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="NewTodo" placeholder="What needs to be done?" ng-model="newTodo" />
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="row" ng-show="totalCount" ng-cloak="">
+        
+          <div class="col-sm-6 col-sm-offset-3">
+          
+            <div class="navbar navbar-default">
+            
+              <span class="navbar-brand">
+                <strong>{{remainingCount}}</strong>
+                <ng-pluralize count="remainingCount" when="{ one: 'item left', other: 'items left' }"></ng-pluralize>
+              </span>
+            
+              <button class="navbar-toggle" data-toggle="collapse" data-target=".nav-header-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            
+              <div class="collapse navbar-collapse nav-header-collapse  navbar-todo">
+                <ul class="nav navbar-nav navbar-right">
+                  <li ng-class="{active: isActive('/')}"><a href="#/">All</a></li>
+                  <li ng-class="{active: isActive('/active')}"><a href="#/active">Active</a></li>
+                  <li ng-class="{active: isActive('/completed')}"><a href="#/completed">Completed</a></li>
+                </ul>
+              </div>
+            
+            </div>
+
+            <table class="table table-bordered">
+            
+              <thead>
+              
+                <tr>
+                  <th width="5%"><input type="checkbox" ng-model="allCompleted" ng-click="markAll(allCompleted)" /></th>
+                  <th class="text-center">Todo Title</th>
+                  <th width="5%"></th>
+                </tr>
+            
+              </thead>
+            
+              <tbody>
+              
+                <tr ng-repeat="(id, todo) in todos | todoFilter">
+                
+                  <td>
+                    <input type="checkbox" ng-hide="todo == editedTodo" ng-model="todo.completed" ng-change="todos.$save(id)" />
+                  </td>
+                
+                  <td ng-dblclick="editTodo(id)">
+                    <span ng-hide="todo == editedTodo" ng-class="{completed: todo.completed}">{{todo.title}}</span>
+                    <form class="form-horizontal" role="form" ng-submit="doneEditing(id)" ng-show="todo == editedTodo">
+                      <div class="form-group">
+                        <label for="EditTodo" class="control-label sr-only">New Todo</label>
+                        <div class="col-sm-12">
+                          <input type="text" class="form-control" id="EditTodo" ng-model="todo.title" todo-escape="revertEditing(id)" todo-blur="doneEditing(id)" todo-focus="todo == editedTodo" />
+                         </div>
+                      </div>
+                    </form>
+                  </td>
+                
+                  <td>
+                    <a ng-click="removeTodo(id)" ng-hide="todo == editedTodo">
+                      <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                  </td>
+                
+                </tr>
+              
+              </tbody>
+            
+            </table>
+
+          </div>
+        
+        </div>
+        
+      </div>
+      <script type="text/javascript" src="scripts/lib/cordova.js"></script>
+      <script type="text/javascript" src="scripts/lib/firebase.js"></script>
+      <script type="text/javascript" src="scripts/lib/angular.js"></script>
+      <script type="text/javascript" src="scripts/lib/angularfire.js"></script>
+      <script type="text/javascript" src="scripts/lib/jquery-1.9.1.js"></script>
+      <script type="text/javascript" src="scripts/lib/bootstrap.js"></script>
+      <script type="text/javascript" src="scripts/app.js"></script>
+      <script type="text/javascript" src="scripts/controllers/TodoController.js"></script>
+      <script type="text/javascript" src="scripts/directives/todoBlur.js"></script>
+      <script type="text/javascript" src="scripts/directives/todoEscape.js"></script>
+      <script type="text/javascript" src="scripts/directives/todoFocus.js"></script>
+      
+    </body>
+</html>
